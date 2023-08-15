@@ -29,12 +29,12 @@ export default function App() {
 
   if(Platform.OS === "android") {
     StatusBar.setBarStyle('dark-content')
-    StatusBar.setBackgroundColor('#FAFBFF')
-    NavigationBar.setBackgroundColorAsync("#FAFBFF")
+    StatusBar.setBackgroundColor('#fff')
+    NavigationBar.setBackgroundColorAsync("#fff")
     NavigationBar.setButtonStyleAsync("dark")
   } else {
     StatusBar.setBarStyle('dark-content')
-    StatusBar.setBackgroundColor('#FAFBFF')
+    StatusBar.setBackgroundColor('#fff')
   }
 
   return (

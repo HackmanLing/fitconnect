@@ -1,0 +1,23 @@
+import { createStackNavigator } from '@react-navigation/stack';
+import { CheckoutStackParamList } from "../interfaces/Index.interface"
+import ProductDetailScreen from '../screens/home/ProductDetailScreen'
+import CartScreen from '../screens/home/checkout/CartScreen'
+import CheckoutScreen from '../screens/home/checkout/CheckoutScreen'
+import CookScreen from '../screens/home/CookScreen';
+
+
+const Stack = createStackNavigator<CheckoutStackParamList>();
+
+function CheckoutNavigation() {
+  return (
+    <Stack.Navigator initialRouteName="CartScreen" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="CartScreen" component={CartScreen} />
+      <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
+      <Stack.Screen name="ProductDetailScreen" component={ProductDetailScreen} initialParams={{product:{}}} />
+
+    </Stack.Navigator>
+  )
+}
+
+
+export default CheckoutNavigation
