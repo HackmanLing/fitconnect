@@ -22,7 +22,7 @@ const HomeContainer = () => {
       tabBarActiveTintColor: "#0275d8",
       tabBarInactiveTintColor: "#aaa",
       tabBarStyle: {
-        backgroundColor: "#FAFBFF",
+        backgroundColor: "#FFFFFF",
         position: "absolute",
         padding: 0,
         left: 0,
@@ -31,15 +31,16 @@ const HomeContainer = () => {
         paddingHorizontal: 10,
         paddingBottom: 5,
         bottom: 0,
-        height: 55,
+        height: 60,
         borderRadius: 0,
         shadowColor: "#393939",
         shadowOffset: {
-          height: 2,
+          height: -2,
           width: 3,
         },
-        shadowOpacity: 0.15,
-        shadowRadius: 8,
+        shadowOpacity: 0.09,
+        shadowRadius: 1,
+        elevation: 2
       }
      }}
     >
@@ -50,21 +51,12 @@ const HomeContainer = () => {
         tabBarLabelStyle: {...font.bold},
         headerShown: false,
         tabBarIcon: ({ color }) => (
-          <MCIcons name="view-dashboard" color={color} size={22} />
+          <MCIcons name="view-dashboard" color={color} size={22} style={{paddingBottom: Platform.OS == 'ios' ? 25 : 0}}/>
       ),
     }}
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
-          if(Platform.OS === "android") {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-            NavigationBar.setBackgroundColorAsync("#FAFBFF")
-            NavigationBar.setButtonStyleAsync("dark")
-          } else {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-          }
         },
       })}
       />
@@ -75,21 +67,12 @@ const HomeContainer = () => {
         tabBarLabelStyle: {...font.bold},
         headerShown: false,
         tabBarIcon: ({ color }) => (
-          <MCIcons name="account-multiple-outline" color={color} size={24} />
+          <MCIcons name="account-multiple-outline" color={color} size={24} style={{paddingBottom: Platform.OS == 'ios' ? 25 : 0}}/>
         ),
       }}
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
-          if(Platform.OS === "android") {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-            NavigationBar.setBackgroundColorAsync("#FAFBFF")
-            NavigationBar.setButtonStyleAsync("dark")
-          } else {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-          }
         },
       })}
       />
@@ -100,21 +83,12 @@ const HomeContainer = () => {
         tabBarLabelStyle: {...font.bold},
         headerShown: false,
         tabBarIcon: ({ color }) => (
-          <MCIcons name="compass-outline" color={color} size={24} />
+          <MCIcons name="compass-outline" color={color} size={24} style={{paddingBottom: Platform.OS == 'ios' ? 25 : 0}}/>
         ),
       }}
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
-          if(Platform.OS === "android") {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-            NavigationBar.setBackgroundColorAsync("#FAFBFF")
-            NavigationBar.setButtonStyleAsync("dark")
-          } else {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-          }
         },
       })}
       />)}
@@ -125,21 +99,12 @@ const HomeContainer = () => {
         tabBarLabelStyle: {...font.bold},
         headerShown: false,
         tabBarIcon: ({ color }) => (
-          <MCIcons name="shopping" color={color} size={22} />
+          <MCIcons name="shopping" color={color} size={22} style={{paddingBottom: Platform.OS == 'ios' ? 25 : 0}}/>
         ),
       }}
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
-          if(Platform.OS === "android") {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-            NavigationBar.setBackgroundColorAsync("#FAFBFF")
-            NavigationBar.setButtonStyleAsync("dark")
-          } else {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-          }
         },
       })}
       />
@@ -150,21 +115,12 @@ const HomeContainer = () => {
         tabBarLabelStyle: {...font.bold},
         headerShown: false,
         tabBarIcon: ({ color }) => (
-          <MCIcons name="cog-outline" color={color} size={22} />
+          <MCIcons name="cog-outline" color={color} size={22} style={{paddingBottom: Platform.OS == 'ios' ? 25 : 0}}/>
         ),
       }} 
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
-          if(Platform.OS === "android") {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-            NavigationBar.setBackgroundColorAsync("#FAFBFF")
-            NavigationBar.setButtonStyleAsync("dark")
-          } else {
-            StatusBar.setBarStyle('dark-content')
-            StatusBar.setBackgroundColor('#FAFBFF')
-          }
         },
       })}
       />

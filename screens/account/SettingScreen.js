@@ -12,7 +12,7 @@ const SettingScreen = () => {
   const [showContent, setShowContent] = useState('Photos')
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff', paddingTop: 15, paddingBottom:55}}>
+    <View style={{flex: 1, backgroundColor: '#fff', paddingTop: 0, paddingBottom:55}}>
       <ScrollView>
         <View>
           <Image

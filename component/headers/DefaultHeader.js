@@ -1,11 +1,11 @@
 import { Feather as Icon, Ionicons as IIcons, MaterialCommunityIcons as MCIcons } from '@expo/vector-icons'
-import { View, Text, TouchableOpacity, TextInput, Image } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, Image, Platform } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HomeStyle from '../../stylesheet/HomeStyle'
 
 const DefaultHeader = ({ onButtonClick }) => {
   return (
-    <View style={{backgroundColor: '#fafbff', paddingTop: 40, paddingBottom: 10, paddingLeft: 15, paddingRight: 15}}>
+    <View style={{backgroundColor: '#fafbff', paddingTop: Platform.OS == 'android' ? 10 : 0, paddingBottom: 10, paddingLeft: 15, paddingRight: 15}}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: "center"}}>
                 <TouchableOpacity style={HomeStyle.profilePic} activeOpacity={0.6} onPress={onButtonClick}>

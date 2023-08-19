@@ -10,7 +10,7 @@ const TransactionHeader = ({ onButtonClick }) => {
   const [profile, setProfile] = useState("")
   
   return (
-    <View style={{backgroundColor: '#fff', paddingTop: 50, paddingBottom: 10}}>
+    <View style={{backgroundColor: '#fff', paddingTop: Platform.OS == 'android' ? 40 : 0, paddingBottom: 10}}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <View>
                 <Text style={HomeStyle.headerTitle}>DashBoard</Text>

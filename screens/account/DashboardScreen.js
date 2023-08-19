@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Animated, Dimensions, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { View, Text, FlatList, Animated, Dimensions, ScrollView, TouchableOpacity, Image, Platform } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import TodayListItem from '../../component/TodayListItem'
 import { clubs, profiles, todayPosts, users, announcements, post } from '../../helpers/fixedData'
@@ -12,18 +12,18 @@ import PostComponent from '../../component/PostComponent'
 const {width, height} = Dimensions.get('window')
 const itemWidth = width / 5 * 4
 const announcementWidth = width / 5 * 4.5
-const announcementitemHeight = height / 5 * 1
+const announcementItemHeight = height < 700 ? height / 4 * 1 : height / 5 * 1
 const itemHeight = height / 5 * 1
 const padding = 0
 const offset = itemWidth
-const userItemWidth = width / 5 * 1.3
-const userItemHeight = height / 5 * 0.7
+const userItemWidth = width < width / 5 * 1.3
+const userItemHeight = height < 700 ? height / 5 * 1 : height / 5 * 0.7 
 const userOffset = userItemWidth
 
 
 const DashboardScreen = () => {
   const [showProfileSelect, setShowProfileSelect] = useState(false)
-  const [optionGroupSelect, setOptionGroupSelect] = useState('space')
+  const [optionGroupSelect, setOptionGroupSelect] = useState('group')
   const [allPosts, setAllPost] = useState([])
   const [userData, setUserData] = useState(users)
 
@@ -34,18 +34,18 @@ const DashboardScreen = () => {
 
   function Users({ data }) {
     const color = randomColor()
-    return <Animated.View style={[HomeStyle.users, { height: userItemHeight, width: userItemWidth, borderWidth: 1, borderColor: '#eee', backgroundColor: '#fff', marginTop: 10 }]}>
+    return <Animated.View style={[HomeStyle.users, { paddingVertical: 12, paddingHorizontal: 25, borderWidth: 1, borderColor: '#eee', backgroundColor: '#fff', marginTop: 10 }]}>
       <View style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: "center"}}>
         {data.profileImage ? (
           <Image source={ data.profileImage } style={{width: 55, height: 55, borderRadius: 50}} />
         ) : (
-          <View style={{width: 55, height: 55, backgroundColor: color, justifyContent: "center", alignItems: 'center', borderRadius: 50}}>
-          <Text style={{fontFamily: "SemiBold", fontSize: 30, color: '#fff'}}>{getInitials(data.firstName, data.lastName)}</Text>
+          <View style={{width: 57, height: 57, backgroundColor: color, justifyContent: "center", alignItems: 'center', borderRadius: 50}}>
+          <Text style={{fontFamily: "SemiBold", fontSize: 27, color: '#fff'}}>{getInitials(data.firstName, data.lastName)}</Text>
         </View>
         ) }
         <View style={{marginTop: 8, justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{fontFamily: 'Regular', fontSize: 11}}>{data.firstName ? data.firstName : ''}</Text>
-          <Text style={{fontFamily: 'Regular', fontSize: 11}}>{data.lastName ? data.lastName : ''}</Text>
+          <Text style={{fontFamily: 'Medium', fontSize: 11}}>{data.firstName ? data.firstName : ''}</Text>
+          <Text style={{fontFamily: 'Medium', fontSize: 11}}>{data.lastName ? data.lastName : ''}</Text>
         </View>
       </View>
     </Animated.View>
@@ -55,15 +55,16 @@ const DashboardScreen = () => {
     setShowProfileSelect(!showProfileSelect) 
   }
 
+
   function Announcement(data) {
     const announcementData = data.item 
     const counts = countLikesAndDowns( announcementData.likes, announcementData.downs)
-    return <Animated.View style={[HomeStyle.announcement, { backgroundColor: '#fff', padding: 8, height: announcementitemHeight, width: announcementWidth }]}>
+    return <Animated.View style={[HomeStyle.announcement, { backgroundColor: '#fff', height: announcementItemHeight, width: announcementWidth }]}>
       <View style={{height: '100%', width: '100%', padding: 10, backgroundColor: '#fff', borderRadius: 10}}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             {/* <View style={{height: 40, width: 40, borderWidth: 1, borderRadius: 50}}></View> */}
-            <Image source={ announcementData.image } style={{height: 40, width: 40, borderWidth: 1, borderRadius: 50}} />
+            <Image source={ announcementData.image } style={{height: 40, width: 40, borderWidth: 1, borderRadius: 50, borderColor: '#272d36'}} />
             <View style={{marginLeft: 5}}>
               <Text style={{fontFamily: "SemiBold", fontSize: 14}}>{announcementData.userName}</Text>
               <Text style={{fontFamily: "Regular", fontSize: 10, marginTop: 5}}>{announcementData.clubName}</Text>
@@ -96,7 +97,9 @@ const DashboardScreen = () => {
       
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false} 
-        decelerationRate={"fast"} style={{flexGrow: 0, paddingHorizontal: padding, paddingLeft: 15, paddingRight: 15 }} snapToInterval={optionGroupSelect == "space" ? userOffset : offset} contentContainerStyle={optionGroupSelect == "group" ? HomeStyle.scrollView : null}
+        decelerationRate={"fast"} style={{flexGrow: 0, paddingHorizontal: padding, paddingLeft: 15, paddingRight: 15 }} 
+        snapToInterval={optionGroupSelect == "space" ? userOffset : offset}
+         contentContainerStyle={optionGroupSelect == "group" ? HomeStyle.scrollView : null}
         overScrollMode='never'>
           <View style={{flexDirection: 'row'}}>
             {users && Array.isArray(users) && users.length ? users.map((user)=>(
@@ -105,6 +108,8 @@ const DashboardScreen = () => {
           </View>
       </ScrollView>
       
+
+{/* ANNOUNCEMENTS */}
       <View style={{marginTop: 30, paddingLeft: 15, paddingRight: 15}}>
         <Text style={{fontFamily: 'SemiBold', fontSize: 20, marginBottom: 10}}>Announcements</Text>
         <FlatList
@@ -114,11 +119,13 @@ const DashboardScreen = () => {
           keyExtractor={item => item.id.toString()}
           horizontal
           pagingEnabled
-          overScrollMode='never'
+          // overScrollMode='never'
           showsHorizontalScrollIndicator={false}
         />
       </View>
 
+
+{/* COMMUNITY POSTS */}
       <View style={{marginTop: 10, paddingLeft: 1, paddingRight: 1}}>
         <Text style={{fontFamily: 'SemiBold', fontSize: 20, marginLeft: 15}}>Community Posts</Text>
         <View style={{ paddingHorizontal: 10 }}>
@@ -129,6 +136,8 @@ const DashboardScreen = () => {
       </View>
         
       </ScrollView>
+
+{/* SELECT PROFILE SHEET */}
       {showProfileSelect ? (
         <View style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, zIndex: 10}}>
           <View onPress={()=>setShowProfileSelect(!showProfileSelect)} style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, zIndex: 1 }} />
