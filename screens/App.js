@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, Platform, SafeAreaView, KeyboardAvoidingView } from 'react-native'
 import { useFonts } from "expo-font"
 import * as NavigationBar from 'expo-navigation-bar'
 import { NavigationContainer } from '@react-navigation/native'
@@ -27,21 +27,16 @@ export default function App() {
     return null
   }
 
-  if(Platform.OS === "android") {
-    StatusBar.setBarStyle('dark-content')
-    StatusBar.setBackgroundColor('#fff')
-    NavigationBar.setBackgroundColorAsync("#fff")
-    NavigationBar.setButtonStyleAsync("dark")
-  } else {
-    StatusBar.setBarStyle('dark-content')
-    StatusBar.setBackgroundColor('#fff')
-  }
-
   return (
-    <AppContainer>
-      <NavigationContainer>
-        <AuthController />
-      </NavigationContainer>
-    </AppContainer>
+    <SafeAreaView style={{flex:1, paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,  }} >
+        <StatusBar backgroundColor="white" barStyle="dark-content"/> 
+        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined} keyboardVerticalOffset={5} style={{flex:1}}>
+          <AppContainer>
+              <NavigationContainer>
+                  <AuthController />
+              </NavigationContainer>
+            </AppContainer>
+        </KeyboardAvoidingView>
+    </SafeAreaView>
   )
 }
