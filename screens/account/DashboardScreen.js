@@ -58,7 +58,7 @@ const DashboardScreen = () => {
   function Announcement(data) {
     const announcementData = data.item 
     const counts = countLikesAndDowns( announcementData.likes, announcementData.downs)
-    return <Animated.View style={[HomeStyle.announcement, { backgroundColor: '#fff', height: announcementitemHeight, width: announcementWidth }]}>
+    return <Animated.View style={[HomeStyle.announcement, { backgroundColor: '#fff', padding: 8, height: announcementitemHeight, width: announcementWidth }]}>
       <View style={{height: '100%', width: '100%', padding: 10, backgroundColor: '#fff', borderRadius: 10}}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
