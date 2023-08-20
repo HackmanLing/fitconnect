@@ -489,7 +489,7 @@ const testPost = [{
 
 const vvids = [
     {
-      video: 'https://www.shutterstock.com/shutterstock/videos/1106632349/preview/stock-footage-aerial-drone-footage-in-key-biscayne-fl-florida-usa-commercial-area-luxury-residence.webm',
+      video: 'http://techslides.com/demos/sample-videos/small.mp4',
       postProfile: require('./../assets/storage/images/post1.jpg'),
       title: 'Ram_Charan',
       description: 'Feel the buity of nature',

@@ -22,7 +22,7 @@ const PostComponent = ( post ) => {
                 {post.user?.firstName} {post.user?.lastName}
               </Text>
               <Text style={{ fontFamily: 'Regular', fontSize: 10, marginTop: 2 }}>
-              {post?.user.clubName} | {post?.user.membershipType}
+                {post?.user.clubName} | {post?.user.membershipType}
               </Text>
             </View>
             <View style={{flexDirection: 'column'}}>

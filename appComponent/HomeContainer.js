@@ -9,12 +9,16 @@ import PostNavigation from './navigations/PostNavigation'
 import CategoryNavigation from './navigations/CategoryNavigation'
 import { font } from '../helpers/fixedData'
 import StoreScreen from '../screens/account/StoreScreen'
+import { useAppContainer } from './AppContainer'
+import { useIsFocused } from '@react-navigation/native'
 
 
 const Tab = createBottomTabNavigator();
 
 const HomeContainer = () => {
+  const { stopPlaying, startPlaying } = useAppContainer();
   const [vendor, setVendor] = useState(true);
+
 
   return (
     <Tab.Navigator
@@ -57,6 +61,7 @@ const HomeContainer = () => {
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
+          stopPlaying()
         },
       })}
       />
@@ -73,6 +78,7 @@ const HomeContainer = () => {
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
+          stopPlaying()
         },
       })}
       />
@@ -89,6 +95,7 @@ const HomeContainer = () => {
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
+          startPlaying()
         },
       })}
       />)}
@@ -105,6 +112,7 @@ const HomeContainer = () => {
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
+          stopPlaying()
         },
       })}
       />
@@ -121,6 +129,7 @@ const HomeContainer = () => {
       listeners={({ navigation, route }) => ({
         tabPress: (e) => {
           e.preventDefault
+          stopPlaying()
         },
       })}
       />

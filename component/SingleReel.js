@@ -1,38 +1,38 @@
-import React, { useRef, useState } from 'react';
-import { View, Text, Dimensions, TouchableOpacity, Image } from 'react-native';
-import { Video, AVPlaybackStatus } from 'expo-av';
-import { Feather as Icon, Ionicons as IIcons, Ionic as IconI, AntDesign as AIcons, MaterialCommunityIcons as MCIcons } from '@expo/vector-icons';
-import { LongPressGestureHandler, State } from 'react-native-gesture-handler';
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { View, Text, Dimensions, TouchableOpacity, Image } from 'react-native'
+import { Video, AVPlaybackStatus } from 'expo-av'
+import { Feather as Icon, Ionicons as IIcons, Ionic as IconI, AntDesign as AIcons, MaterialCommunityIcons as MCIcons } from '@expo/vector-icons'
+import { LongPressGestureHandler, State } from 'react-native-gesture-handler'
+import { useAppContainer } from '../appComponent/AppContainer'
 
 const SingleReel = ({ item, index, currentIndex }) => {
-  const windowWidth = Dimensions.get('window').width;
-  const windowHeight = Dimensions.get('window').height;
-  const [isPlaying, setIsPlaying] = useState(true)
+  const windowWidth = Dimensions.get('window').width
+  const windowHeight = Dimensions.get('window').height
+  const {  isPlaying, togglePlayback, setVideoRef, startPlaying, stopPlaying } = useAppContainer()
 
-  const videoRef = useRef(null);
-  const [videoStatus, setVideoStatus] = useState({});
-  const [mute, setMute] = useState(false);
-  const [like, setLike] = useState(item.isLike);
+  const videoRef = useRef(null)
+  const [videoStatus, setVideoStatus] = useState({})
+  const [mute, setMute] = useState(false)
+  const [like, setLike] = useState(item.isLike)
 
   const handlePlaybackStatusUpdate = (status) => {
-    setVideoStatus(status);
-  }
-
-  const handleLongPressStateChange = ({ nativeEvent }) => {
-    if (nativeEvent.state === State.BEGAN) {
-      setIsPlaying(true);
-    } else if (nativeEvent.state === State.END) {
-      setIsPlaying(false);
-    }
+    setVideoStatus(status)
   }
 
   const onBuffer = buffer => {
-    console.log('buffring', buffer);
+    console.log('buffering', buffer)
   }
 
   const onError = error => {
-    console.log('error', error);
+    console.log('error', error)
   }
+
+  useEffect(() => {
+    startPlaying()
+    return () => {
+      stopPlaying()
+    }
+  }, [])
 
   return (
     <View
@@ -46,7 +46,6 @@ const SingleReel = ({ item, index, currentIndex }) => {
         <TouchableOpacity
           activeOpacity={0.9}
           onPress={() => setMute(!mute)}
-          onLongPress={handleLongPressStateChange}
           style={{
             width: '100%',
             height: '100%',
@@ -182,7 +181,7 @@ const SingleReel = ({ item, index, currentIndex }) => {
         </View>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default SingleReel;
+export default SingleReel

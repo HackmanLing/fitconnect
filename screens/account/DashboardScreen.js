@@ -10,6 +10,7 @@ import DefaultHeader from '../../component/headers/DefaultHeader'
 import DashboardStyle from '../../stylesheet/DashboardStyle'
 import PostComponent from '../../component/PostComponent'
 import Announcement from '../../component/Announcement'
+import { useAppContainer } from '../../appComponent/AppContainer'
 const {width, height} = Dimensions.get('window')
 const itemWidth = width / 5 * 4
 const announcementWidth = width / 5 * 4.5
@@ -27,10 +28,18 @@ const DashboardScreen = () => {
   const [optionGroupSelect, setOptionGroupSelect] = useState('group')
   const [allPosts, setAllPost] = useState([])
   const [userData, setUserData] = useState(users)
+  const { unloadVideo, stopPlaying } = useAppContainer()
 
   useEffect(() => {
     setAllPost(post)
     setUserData(users)
+  }, [])
+
+  useEffect(() => {
+    stopPlaying()
+    return () => {
+      unloadVideo()
+    }
   }, [])
 
   function Users({ data }) {
