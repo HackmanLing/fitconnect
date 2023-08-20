@@ -34,7 +34,7 @@ const DashboardScreen = () => {
 
   function Users({ data }) {
     const color = randomColor()
-    return <Animated.View style={[HomeStyle.users, { paddingVertical: 12, paddingHorizontal: 25, borderWidth: 1, borderColor: '#eee', backgroundColor: '#fff', marginTop: 10 }]}>
+    return <Animated.View style={[HomeStyle.users, { paddingVertical: 12, paddingHorizontal: 25, backgroundColor: '#fff', marginTop: 10 }]}>
       <View style={{height: '100%', width: '100%', justifyContent: 'center', alignItems: "center"}}>
         {data.profileImage ? (
           <Image source={ data.profileImage } style={{width: 55, height: 55, borderRadius: 50}} />
@@ -64,10 +64,10 @@ const DashboardScreen = () => {
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
             {/* <View style={{height: 40, width: 40, borderWidth: 1, borderRadius: 50}}></View> */}
-            <Image source={ announcementData.image } style={{height: 40, width: 40, borderWidth: 1, borderRadius: 50, borderColor: '#272d36'}} />
+            <Image source={ announcementData.image } style={{height: 40, width: 40, borderRadius: 50}} />
             <View style={{marginLeft: 5}}>
               <Text style={{fontFamily: "SemiBold", fontSize: 14}}>{announcementData.userName}</Text>
-              <Text style={{fontFamily: "Regular", fontSize: 10, marginTop: 5}}>{announcementData.clubName}</Text>
+              <Text style={{fontFamily: "Regular", fontSize: 10, marginTop: 2}}>{announcementData.clubName}</Text>
             </View>
           </View>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', marginRight: 10}}>
@@ -99,9 +99,8 @@ const DashboardScreen = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false} 
         decelerationRate={"fast"} style={{flexGrow: 0, paddingHorizontal: padding, paddingLeft: 15, paddingRight: 15 }} 
         snapToInterval={optionGroupSelect == "space" ? userOffset : offset}
-         contentContainerStyle={optionGroupSelect == "group" ? HomeStyle.scrollView : null}
         overScrollMode='never'>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{flexDirection: 'row', paddingRight: 20}}>
             {users && Array.isArray(users) && users.length ? users.map((user)=>(
               <Users key={user.id} data={user} />
             )) : null}
@@ -119,7 +118,6 @@ const DashboardScreen = () => {
           keyExtractor={item => item.id.toString()}
           horizontal
           pagingEnabled
-          // overScrollMode='never'
           showsHorizontalScrollIndicator={false}
         />
       </View>

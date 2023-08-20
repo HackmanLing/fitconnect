@@ -32,8 +32,8 @@ const DashboardStyle = StyleSheet.create({
 
     },
     post: {
-        borderBottomWidth: 1,
-        borderBottomColor: '#dfe4ea',
+        // borderBottomWidth: 1,
+        // borderBottomColor: '#dfe4ea',
         // display: 'none',
         borderRadius: 4,
         backgroundColor: '#fff',
@@ -45,7 +45,7 @@ const DashboardStyle = StyleSheet.create({
       postContentImage: {
         width: '100%',
         height: 200,
-        borderRadius: 10,
+        borderRadius: 5,
         marginTop: 10,
     },
       interactionBar: {
@@ -53,7 +53,7 @@ const DashboardStyle = StyleSheet.create({
         height: 40,
         marginHorizontal: 20,
         marginTop: -20,
-        borderRadius: 10,
+        borderRadius: 5,
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
